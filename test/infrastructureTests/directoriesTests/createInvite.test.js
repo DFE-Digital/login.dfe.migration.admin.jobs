@@ -16,7 +16,7 @@ const directories = require('./../../../src/infrastructure/directories');
 
 describe('when creating an invitation', () => {
   beforeEach(() => {
-    rp.mockReset().mockReturnValue('invite-id');
+    rp.mockReset().mockReturnValue({ id: 'invite-id' });
 
     opts = {
       url: 'https://dirs.test',

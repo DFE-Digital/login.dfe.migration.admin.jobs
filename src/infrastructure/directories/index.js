@@ -35,7 +35,7 @@ const createInvite = async (userDetails, opts) => {
 
     const token = await jwtStrategy(opts).getBearerToken();
 
-    const invitationId = await rp({
+    const invitation = await rp({
       method: 'POST',
       uri: `${opts.url}/invitations`,
       headers: {
@@ -49,7 +49,7 @@ const createInvite = async (userDetails, opts) => {
       json: true,
     });
 
-    return invitationId;
+    return invitation.id;
   } catch (e) {
     throw new Error(`Error creating invitation - ${e.message}`);
   }
