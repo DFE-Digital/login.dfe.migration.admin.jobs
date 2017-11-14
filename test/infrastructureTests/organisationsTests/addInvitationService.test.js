@@ -38,7 +38,7 @@ describe('when adding a service to an invitation', () => {
 
     expect(rp.mock.calls.length).toBe(1);
     expect(rp.mock.calls[0][0].method).toBe('PUT');
-    expect(rp.mock.calls[0][0].uri).toBe('https://orgs.test/org1/services/svc1/invitations/some-id');
+    expect(rp.mock.calls[0][0].uri).toBe('https://orgs.test/organisations/org1/services/svc1/invitations/some-id');
   });
 
   it('then it should call organisations api with token', async () => {
