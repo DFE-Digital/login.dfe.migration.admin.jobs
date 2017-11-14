@@ -1,5 +1,10 @@
+const { union } = require('lodash');
+const invite = require('./handlers/invite');
+
 const register = (config, logger) => {
-  // TODO
+  const inviteHandlers = invite.register(config, logger);
+
+  return union(inviteHandlers);
 };
 
 module.exports = {
