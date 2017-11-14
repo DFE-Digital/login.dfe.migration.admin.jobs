@@ -2,7 +2,7 @@ const { createInvite } = require('./../../infrastructure/directories');
 const { addInvitationService } = require('./../../infrastructure/organisations');
 
 const process = async (config, logger, data) => {
-  await createInvite({
+  const invitationId = await createInvite({
     email: data.email,
     firstName: data.firstName,
     lastName: data.lastName,
@@ -11,7 +11,7 @@ const process = async (config, logger, data) => {
   for (let i = 0; i < data.services.length; i++) {
     const service = data.services[i];
     await addInvitationService({
-      invitationId: 'TODO', // TODO
+      invitationId,
       organisationId: service.organisationId,
       serviceId: service.serviceId,
       roleId: service.roleId,

@@ -67,12 +67,14 @@ describe('when handling a migrationinvite_v1 job', () => {
   });
 
   it('then it should add each service to the invitation', async () => {
+    directories.createInvite.mockReturnValue('invite-id');
+
     await handler.process(jobData);
 
     expect(organisations.addInvitationService.mock.calls.length).toBe(2);
 
     expect(organisations.addInvitationService.mock.calls[0][0]).toMatchObject({
-      invitationId: 'TODO', // TODO
+      invitationId: 'invite-id',
       organisationId: 'org1',
       serviceId: 'svc1',
       roleId: 0,
@@ -80,7 +82,7 @@ describe('when handling a migrationinvite_v1 job', () => {
     expect(organisations.addInvitationService.mock.calls[0][1]).toBe(config.migrationAdmin.organisations);
 
     expect(organisations.addInvitationService.mock.calls[1][0]).toMatchObject({
-      invitationId: 'TODO', // TODO
+      invitationId: 'invite-id',
       organisationId: 'org1',
       serviceId: 'svc2',
       roleId: 100000,
