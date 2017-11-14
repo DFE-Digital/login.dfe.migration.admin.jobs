@@ -6,7 +6,8 @@ const process = async (config, logger, data) => {
     email: data.email,
     firstName: data.firstName,
     lastName: data.lastName,
-  }, config.migrationAdmin.directories);
+  }, config.migrationAdmin.directories, logger);
+  logger.info(`invitationId = ${invitationId}`);
 
   for (let i = 0; i < data.services.length; i++) {
     const service = data.services[i];
@@ -15,7 +16,7 @@ const process = async (config, logger, data) => {
       organisationId: service.organisationId,
       serviceId: service.serviceId,
       roleId: service.roleId,
-    }, config.migrationAdmin.organisations);
+    }, config.migrationAdmin.organisations, logger);
   }
 };
 

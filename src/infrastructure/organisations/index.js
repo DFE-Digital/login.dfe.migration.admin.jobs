@@ -29,7 +29,7 @@ const validateDetails = (details) => {
   }
 };
 
-const addInvitationService = async (invitationServiceDetails, opts) => {
+const addInvitationService = async (invitationServiceDetails, opts, logger) => {
   validateOpts(opts);
   validateDetails(invitationServiceDetails);
 
@@ -40,7 +40,7 @@ const addInvitationService = async (invitationServiceDetails, opts) => {
 
     await rp({
       method: 'PUT',
-      uri: `${opts.url}/${organisationId}/services/${serviceId}/invitations/${invitationId}`,
+      uri: `${opts.url}/organisations/${organisationId}/services/${serviceId}/invitations/${invitationId}`,
       headers: {
         authorization: `Bearer ${token}`,
       },
