@@ -19,11 +19,18 @@ const config = {
     },
   }
 };
-const logger = {};
+const logger = {
+  info: jest.fn(),
+};
 const jobData = {
   email: 'user.one@unit.test',
   firstName: 'User',
   lastName: 'One',
+  oldCredentials: {
+    username: 'olduser',
+    password: 'some-hashed-password',
+    salt: 'the-users-salt',
+  },
   services: [
     {
       organisationId: 'org1',
@@ -88,5 +95,18 @@ describe('when handling a migrationinvite_v1 job', () => {
       roleId: 100000,
     });
     expect(organisations.addInvitationService.mock.calls[1][1]).toBe(config.migrationAdmin.organisations);
+  });
+
+  it('then it should store old credentials in invitation', async () => {
+    await handler.process(jobData);
+
+    expect(directories.createInvite.mock.calls.length).toBe(1);
+    expect(directories.createInvite.mock.calls[0][0]).toMatchObject({
+      oldCredentials: {
+        username: jobData.oldCredentials.username,
+        password: jobData.oldCredentials.password,
+        salt: jobData.oldCredentials.salt,
+      },
+    });
   })
 });

@@ -6,6 +6,11 @@ const process = async (config, logger, data) => {
     email: data.email,
     firstName: data.firstName,
     lastName: data.lastName,
+    oldCredentials: {
+      username: data.oldCredentials.username,
+      password: data.oldCredentials.password,
+      salt: data.oldCredentials.salt,
+    }
   }, config.migrationAdmin.directories, logger);
   logger.info(`invitationId = ${invitationId}`);
 
