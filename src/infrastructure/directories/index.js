@@ -45,6 +45,7 @@ const createInvite = async (userDetails, opts, logger) => {
         email,
         firstName,
         lastName,
+        oldCredentials,
       },
       json: true,
     });
