@@ -57,12 +57,12 @@ describe('when handling a migrationinvite_v1 job', () => {
   });
 
   it('then it should return a migrationinvite_v1 hander', () => {
-    expect(handler.type).toBe('migationinvite_v1');
-    expect(handler.process).not.toBeNull();
+    expect(handler.type).toBe('migrationinvite_v1');
+    expect(handler.processor).not.toBeNull();
   });
 
   it('then it should create the invitation', async () => {
-    await handler.process(jobData);
+    await handler.processor(jobData);
 
     expect(directories.createInvite.mock.calls.length).toBe(1);
     expect(directories.createInvite.mock.calls[0][0]).toMatchObject({
@@ -76,7 +76,7 @@ describe('when handling a migrationinvite_v1 job', () => {
   it('then it should add each service to the invitation', async () => {
     directories.createInvite.mockReturnValue('invite-id');
 
-    await handler.process(jobData);
+    await handler.processor(jobData);
 
     expect(organisations.addInvitationService.mock.calls.length).toBe(2);
 
@@ -98,7 +98,7 @@ describe('when handling a migrationinvite_v1 job', () => {
   });
 
   it('then it should store old credentials in invitation', async () => {
-    await handler.process(jobData);
+    await handler.processor(jobData);
 
     expect(directories.createInvite.mock.calls.length).toBe(1);
     expect(directories.createInvite.mock.calls[0][0]).toMatchObject({
