@@ -24,12 +24,12 @@ const validateDetails = (details) => {
   if (!details.serviceId) {
     throw makeBadRequestError('details.serviceId must be supplied');
   }
-  if (details.roleId == undefined || details.roleId < 0) {
+  if (details.roleId === undefined || details.roleId < 0) {
     throw makeBadRequestError('details.roleId must be supplied');
   }
 };
 
-const addInvitationService = async (invitationServiceDetails, opts, logger) => {
+const addInvitationService = async (invitationServiceDetails, opts) => {
   validateOpts(opts);
   validateDetails(invitationServiceDetails);
 
