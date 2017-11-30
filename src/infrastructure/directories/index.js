@@ -26,7 +26,7 @@ const validateDetails = (details) => {
   }
 };
 
-const createInvite = async (userDetails, opts, logger) => {
+const createInvite = async (userDetails, opts) => {
   validateOpts(opts);
   validateDetails(userDetails);
 

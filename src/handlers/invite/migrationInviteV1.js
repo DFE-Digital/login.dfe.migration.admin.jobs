@@ -10,11 +10,11 @@ const process = async (config, logger, data) => {
       username: data.oldCredentials.username,
       password: data.oldCredentials.password,
       salt: data.oldCredentials.salt,
-    }
+    },
   }, config.migrationAdmin.directories, logger);
   logger.info(`invitationId = ${invitationId}`);
 
-  for (let i = 0; i < data.services.length; i++) {
+  for (let i = 0; i < data.services.length; i += 1) {
     const service = data.services[i];
     await addInvitationService({
       invitationId,
@@ -25,14 +25,12 @@ const process = async (config, logger, data) => {
   }
 };
 
-const getHandler = (config, logger) => {
-  return {
-    type: 'migrationinvite_v1',
-    processor: async (data) => {
-      await process(config, logger, data);
-    }
-  };
-};
+const getHandler = (config, logger) => ({
+  type: 'migrationinvite_v1',
+  processor: async (data) => {
+    await process(config, logger, data);
+  },
+});
 
 module.exports = {
   getHandler,
