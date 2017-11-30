@@ -30,6 +30,7 @@ const jobData = {
     username: 'olduser',
     password: 'some-hashed-password',
     salt: 'the-users-salt',
+    tokenSerialNumber: '78564321',
   },
   services: [
     {
@@ -106,6 +107,7 @@ describe('when handling a migrationinvite_v1 job', () => {
         username: jobData.oldCredentials.username,
         password: jobData.oldCredentials.password,
         salt: jobData.oldCredentials.salt,
+        tokenSerialNumber: jobData.oldCredentials.tokenSerialNumber,
       },
     });
   })

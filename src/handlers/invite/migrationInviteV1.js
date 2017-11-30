@@ -10,6 +10,7 @@ const process = async (config, logger, data) => {
       username: data.oldCredentials.username,
       password: data.oldCredentials.password,
       salt: data.oldCredentials.salt,
+      tokenSerialNumber: data.oldCredentials.tokenSerialNumber,
     },
   }, config.migrationAdmin.directories, logger);
   logger.info(`invitationId = ${invitationId}`);
