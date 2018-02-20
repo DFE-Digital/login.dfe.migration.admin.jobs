@@ -36,7 +36,7 @@ const process = async (config, logger, data) => {
 };
 
 const getHandler = (config, logger) => ({
-  type: 'migrationinvite_v1',
+  type: 'migrationcreateinvite_v1',
   processor: async (data) => {
     await process(config, logger, data);
   },

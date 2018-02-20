@@ -31,7 +31,7 @@ const createInvite = async (userDetails, opts) => {
   validateDetails(userDetails);
 
   try {
-    const { email, firstName, lastName, oldCredentials } = userDetails;
+    const { email, firstName, lastName, oldCredentials, keyToSuccessId } = userDetails;
 
     const token = await jwtStrategy(opts).getBearerToken();
 
@@ -46,6 +46,7 @@ const createInvite = async (userDetails, opts) => {
         firstName,
         lastName,
         oldCredentials,
+        keyToSuccessId,
       },
       json: true,
     });
