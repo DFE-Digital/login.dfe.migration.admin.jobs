@@ -31,6 +31,7 @@ const jobData = {
     password: 'some-hashed-password',
     salt: 'the-users-salt',
     tokenSerialNumber: '78564321',
+    ktsId: 99999999,
   },
   services: [
     {
@@ -110,5 +111,14 @@ describe('when handling a migrationinvite_v1 job', () => {
         tokenSerialNumber: jobData.oldCredentials.tokenSerialNumber,
       },
     });
-  })
+  });
+
+  it('then it should store kts id in invitation', async () => {
+    await handler.processor(jobData);
+
+    expect(directories.createInvite.mock.calls.length).toBe(1);
+    expect(directories.createInvite.mock.calls[0][0]).toMatchObject({
+      keyToSuccessId: jobData.oldCredentials.ktsId,
+    });
+  });
 });
