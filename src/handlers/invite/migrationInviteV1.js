@@ -2,6 +2,13 @@ const { createInvite } = require('./../../infrastructure/directories');
 const { addInvitationService } = require('./../../infrastructure/organisations');
 
 const process = async (config, logger, data) => {
+  let source = '';
+  if (data.oldCredentials.tokenSerialNumber) {
+    source = 'EAS';
+  } else if (data.oldCredentials.password) {
+    source = 'OSA';
+  }
+
   const invitationId = await createInvite({
     email: data.email,
     firstName: data.firstName,
@@ -11,7 +18,9 @@ const process = async (config, logger, data) => {
       password: data.oldCredentials.password,
       salt: data.oldCredentials.salt,
       tokenSerialNumber: data.oldCredentials.tokenSerialNumber,
+      source,
     },
+    keyToSuccessId: data.oldCredentials.ktsId,
   }, config.migrationAdmin.directories, logger);
   logger.info(`invitationId = ${invitationId}`);
 
