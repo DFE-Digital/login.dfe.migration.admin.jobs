@@ -52,14 +52,14 @@ const organisations = require('./../../../src/infrastructure/organisations');
 const { getHandler } = require('./../../../src/handlers/invite/migrationInviteV1');
 const handler = getHandler(config, logger);
 
-describe('when handling a migrationinvite_v1 job', () => {
+describe('when handling a migrationcreateinvite_v1 job', () => {
   beforeEach(() => {
     directories.createInvite.mockReset();
     organisations.addInvitationService.mockReset();
   });
 
-  it('then it should return a migrationinvite_v1 hander', () => {
-    expect(handler.type).toBe('migrationinvite_v1');
+  it('then it should return a migrationcreateinvite_v1 hander', () => {
+    expect(handler.type).toBe('migrationcreateinvite_v1');
     expect(handler.processor).not.toBeNull();
   });
 
