@@ -34,7 +34,7 @@ const addInvitationService = async (invitationServiceDetails, opts) => {
   validateDetails(invitationServiceDetails);
 
   try {
-    const { invitationId, organisationId, serviceId, roleId } = invitationServiceDetails;
+    const { invitationId, organisationId, serviceId, roleId, externalIdentifiers } = invitationServiceDetails;
 
     const token = await jwtStrategy(opts).getBearerToken();
 
@@ -46,6 +46,7 @@ const addInvitationService = async (invitationServiceDetails, opts) => {
       },
       body: {
         roleId,
+        externalIdentifiers,
       },
       json: true,
     });
