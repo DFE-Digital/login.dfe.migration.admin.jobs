@@ -31,6 +31,9 @@ const process = async (config, logger, data) => {
       organisationId: service.organisationId,
       serviceId: service.serviceId,
       roleId: service.roleId,
+      externalIdentifiers: [
+        { key: 'k2s-id', value: data.oldCredentials.ktsId },
+      ],
     }, config.migrationAdmin.organisations, logger);
   }
 };
